@@ -8,7 +8,7 @@ class Estudiante(models.Model):
     email = models.EmailField()
     nro_legajo = models.IntegerField(unique=True)
     fecha_de_creacion = models.DateTimeField(auto_now_add=True)
-    fehca_de_nacimiento = models.DateField(null=True)
+    fecha_de_nacimiento = models.DateField(null=True)
     
     def __str__(self):
         return f"Estudiante: {self.nombre} - Nro Legajo: {self.nro_legajo}"
