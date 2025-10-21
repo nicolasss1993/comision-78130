@@ -21,5 +21,6 @@ from coder.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("coder.urls"))
+    path("", include("coder.urls")),
+    path("cursos/", include("cursos.urls")),
 ]

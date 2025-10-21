@@ -25,10 +25,8 @@
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
-          <th scope="col">Email</th>
           <th scope="col">Legajo</th>
-          <th scope="col">Fecha de Nacimiento</th>
-          <th scope="col">Fecha de Creación</th>
+          <th scope="col" class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -37,10 +35,11 @@
           <th scope="row">{{ forloop.counter }}</th>
           <td>{{ estudiante.nombre }}</td>
           <td>{{ estudiante.apellido }}</td>
-          <td>{{ estudiante.email }}</td>
           <td>{{ estudiante.nro_legajo }}</td>
-          <td>{{ estudiante.fecha_de_nacimiento|date:"d/m/Y" }}</td>
-          <td>{{ estudiante.fecha_de_creacion|date:"d/m/Y H:i" }}</td>
+          <td class="text-center">
+            <a href="{% url 'modificar_estudiante' estudiante.nro_legajo %}" class="btn btn-sm btn-outline-warning me-1">Modificar</a>
+            <a href="{% url 'eliminar_estudiante' estudiante.nro_legajo %}" onclick="return confirm('¿Seguro que deseas eliminar el Estudiante {{ estudiante.nombre }}?')" class="btn btn-sm btn-outline-danger">Eliminar</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
