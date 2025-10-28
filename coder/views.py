@@ -57,3 +57,7 @@ def modificar_estudiante(request, nro_legajo):
         form = EstudianteEditForm(instance=estudiante) # Esto es para limitar campos en la edicion
     
     return render(request, "coder/estudiante_form.html", {'form': form, 'edicion': True})
+
+
+def terminar_vista(request):
+    pass
