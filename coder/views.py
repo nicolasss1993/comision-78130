@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from coder.forms import *
 from coder.models import Estudiante
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     return render(request, "coder/index.html")
@@ -10,7 +12,7 @@ def index(request):
 def test(request):
     return render(request, "coder/test.html")
 
-
+@login_required
 def crear_estudiante(request):
     # GET - Pedir informacion a la base de datos.
     # POST - Solicitud para crear informacion/manipular informacion.
@@ -23,7 +25,7 @@ def crear_estudiante(request):
         form = EstudianteForm()
     
     return render(request, "coder/estudiante_form.html", {'form': form})
-
+@login_required
 def lista_estudiantes(request):
     query = request.GET.get('q', '')
     if len(query) > 0: # if query:
@@ -34,7 +36,7 @@ def lista_estudiantes(request):
     
     return render(request, "coder/estudiante_list.html", {"estudiantes": estudiante, "query": query})
 
-
+@login_required
 def eliminar_estudiante(request, nro_legajo): # pk = ID en la base de datos
     #try: except:
     #estudiante = Estudiante.objects.get(nombre=pk)  # Si este metodo me devuelve 2 o mas registro - ROMPE MultipleObjectObtain
@@ -43,7 +45,7 @@ def eliminar_estudiante(request, nro_legajo): # pk = ID en la base de datos
     messages.success(request, "Estudiante eliminado correctamente")
     return redirect('estudiante_list')
 
-
+@login_required
 def modificar_estudiante(request, nro_legajo):
     estudiante = get_object_or_404(Estudiante, nro_legajo=nro_legajo)
     if request.method == "POST":
